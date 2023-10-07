@@ -1,15 +1,19 @@
-/* eslint-disable no-console */
 import app from './app';
 import { Config } from './config';
+import logger from './config/logger';
 
 const startServer = () => {
   const port = Config.PORT;
 
   try {
-    app.listen(port, () => console.log(`Listening on port ${port}`));
+    app.listen(port, () => logger.info(`Listening on port ${port}`));
   } catch (error) {
-    console.error(error);
-    process.exit(1);
+    if (error instanceof Error) {
+      logger.error(error);
+      setTimeout(() => {
+        process.exit(1);
+      }, 1000);
+    }
   }
 };
 
