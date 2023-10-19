@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import request from 'supertest';
 import app from '../../src/app';
 
@@ -32,6 +34,17 @@ describe('POST /auth/register', () => {
       expect(
         (response.headers as Record<string, string>)['content-type'],
       ).toEqual(expect.stringContaining('json'));
+    });
+
+    it('should persist the user in database', async () => {
+      const userData = {
+        firstName: 'Muhaimin',
+        lastName: 'Ikhlas',
+        email: 'muhaiming2c@gmail.com',
+        password: 'secret',
+      };
+
+      await request(app).post('/auth/register').send(userData);
     });
   });
   describe('Fields are missing', () => {});
