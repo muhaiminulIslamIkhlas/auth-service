@@ -72,6 +72,19 @@ describe('POST /auth/register', () => {
       expect(users[0].lastName).toBe(userData.lastName);
       expect(users[0].email).toBe(userData.email);
     });
+
+    // it('should return an ID', async () => {
+    //   const userData = {
+    //     firstName: 'Muhaimin',
+    //     lastName: 'Ikhlas',
+    //     email: 'muhaiming2c@gmail.com',
+    //     password: 'secret',
+    //   };
+
+    //   const user = await request(app).post('/auth/register').send(userData);
+
+    //   expect(user).toMatchObject({id: 1});
+    // });
   });
   describe('Fields are missing', () => {});
 });
